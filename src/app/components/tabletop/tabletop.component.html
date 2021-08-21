@@ -1,0 +1,141 @@
+<div class="container">
+  <div class="playground" #playground id="playground">
+    <div class="typing-txt">
+      {{ message }}
+    </div>
+    <div class="robot" id="robotInput">
+      <!-- <img
+        src=""
+        alt=""
+        #robotInput
+        class="rb"
+        id="robotImg"
+      /> -->
+    </div>
+  </div>
+
+  <form class="robot-form">
+    <table class="robot-full-width" cellspacing="0">
+      <tr>
+        <td></td>
+        <td>
+          <button mat-raised-button (click)="move()">
+            MOVE<span class="mat-button-wrapper"
+              ><mat-icon
+                role="img"
+                class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="true"
+                data-mat-icon-type="font"
+                >drag_indicator</mat-icon
+              ></span
+            >
+          </button>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <button mat-raised-button (click)="rotateLeft()">
+            <span class="mat-button-wrapper"
+              ><mat-icon
+                role="img"
+                class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="true"
+                data-mat-icon-type="font"
+                >arrow_back_ios</mat-icon
+              ></span
+            >LEFT
+          </button>
+        </td>
+        <td>
+          <button mat-fab color="primary" class="player" (click)="place()">
+            PLACE<span class="mat-button-wrapper"
+              ><mat-icon
+                role="img"
+                class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="true"
+                data-mat-icon-type="font"
+                >play_arrow</mat-icon
+              ></span
+            >
+          </button>
+        </td>
+        <td>
+          <button mat-raised-button (click)="rotateRight()">
+            RIGHT<span class="mat-button-wrapper"
+              ><mat-icon
+                role="img"
+                class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="true"
+                data-mat-icon-type="font"
+                >arrow_forward_ios</mat-icon
+              ></span
+            >
+          </button>
+        </td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>
+          <button mat-raised-button (click)="report()">
+            REPORT
+            <span class="mat-button-wrapper"
+              ><mat-icon
+                role="img"
+                class="mat-icon notranslate material-icons mat-icon-no-color"
+                aria-hidden="true"
+                data-mat-icon-type="font"
+                >summarize</mat-icon
+              ></span
+            >
+          </button>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <div *ngIf="errorMessage" class="error">
+    <mat-error>{{ errorMessage }}</mat-error>
+  </div>
+  <div *ngIf="showReport">
+    <mat-divider></mat-divider>
+    <mat-grid-list
+      cols="3"
+      rowHeight="200px"
+      [gutterSize]="'40px'"
+      class="cards"
+    >
+      <mat-grid-tile>
+        <div class="super">
+          <h3>xAxis</h3>
+          <p>
+            The robot is currently at the postion
+            <span class="reportPos">{{ robotCurrentPosition.xPosition }}</span>
+            in the horizontal (left-right) axis.
+          </p>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="team">
+          <h3>yAxis</h3>
+          <p>
+            The robot is currently at the postion
+            <span class="reportPos">{{ robotCurrentPosition.yPosition }}</span>
+            in the vertical (bottom-top) axis.
+          </p>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="calc">
+          <h3>Direction</h3>
+          <p>
+            The robot is currently positioned on the platform and heading
+            <span class="reportPos">{{ robotCurrentPosition.facing }}</span
+            >.
+          </p>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>
