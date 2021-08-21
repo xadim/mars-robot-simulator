@@ -1,7 +1,6 @@
 .robot-form {
   min-width: 150px;
   max-width: 500px;
-  //   width: 100%;
   margin: 14px auto;
   .player {
     width: 90px;
@@ -18,21 +17,16 @@
 }
 
 td {
-  //   padding-right: 8px;
   text-align: center;
   padding: 14px 0;
 }
 
 .playground {
-  // border: 4px solid #3c096c;
   background-color: #4050b5;
-
-  // box-shadow: 0 0 0 3px #7c82ad;
   box-shadow: 0px 0px 10px 5px hsl(229deg 6% 66% / 20%);
   color: #f5f5f5;
   margin: 40px auto;
   text-align: center;
-  //   display: block;
   width: 360px;
   height: 360px;
   display: flex;
@@ -71,11 +65,6 @@ td {
 }
 
 .cards {
-  // display: grid;
-  // grid-template-columns: repeat(3, 1fr);
-  // grid-template-rows: repeat(4, 1fr);
-  // width: 1000px;
-  // height: 440px;
   margin: auto;
   padding-left: 20px;
   div {

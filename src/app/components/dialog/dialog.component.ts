@@ -31,8 +31,8 @@ export class DialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.positionForm = this.fb.group({
-      xFormControl: [0, [Validators.required]],
-      yFormControl: [0, [Validators.required]],
+      xFormControl: [0, [(Validators.required, Validators.maxLength(1))]],
+      yFormControl: [0, [Validators.required, Validators.maxLength(1)]],
       directionFormControl: ['NORTH', [Validators.required]],
     });
   }

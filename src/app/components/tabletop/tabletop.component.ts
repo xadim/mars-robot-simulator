@@ -1,7 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { RobotService } from '../../services/robot.service';
 import { DialogComponent } from '../dialog/dialog.component';
-// import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { DatasharingService } from '../../services/datasharing.service';
 import { isEmpty } from 'lodash';
@@ -12,7 +11,6 @@ import { isEmpty } from 'lodash';
   styleUrls: ['./tabletop.component.scss'],
 })
 export class TabletopComponent implements OnInit {
-  title = 'Mars Robot Simulator';
   showPlayground = false;
   showReport = false;
   robotCurrentPosition: any = [];
@@ -37,28 +35,20 @@ export class TabletopComponent implements OnInit {
     });
   }
 
-  ngAfterViewInit() {
-    // console.log('on after view init', this.robotInput);
-    // this returns null
-  }
-
   /**
-   *
    * @param data
    */
   putRobotOnTheScene(data: any) {
-    console.log(data);
-
     let playground = document.getElementById('playground');
     let robot = document.getElementById('robotInput');
-    let robotImg = document.getElementById('robotImg');
     this.showPlayground = true;
     playground!.classList.add('gameScene');
     robot!.style.display = 'block';
     robot!.style.marginLeft = parseInt(data.xAxis) + 'px';
     robot!.style.marginTop = data.yAxis + 'px';
     this.image.className = '';
-    this.image.classList.add('rotate' + data.direction);
+    this.image.style.transform = 'rotate(' + data.direction + 'deg)';
+
     if (isEmpty(this.image.src)) {
       this.image.src = '../../../assets/robot.svg';
       robot!.appendChild(this.image);
@@ -95,20 +85,6 @@ export class TabletopComponent implements OnInit {
       width: '375px',
       // data: { name: this.name, animal: this.animal },
     });
-
-    // dialogRef.beforeClosed().subscribe((res) => {
-    //   console.log('The dialog will be closed');
-    //   // this.animal = result;
-    //   console.log(res);
-    // });
-
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log('The dialog was closed');
-    //   // this.animal = result;
-    //   console.log(result);
-    // });
-
-    // console.log(dialogRef);
   }
 
   /**
@@ -133,8 +109,12 @@ export class TabletopComponent implements OnInit {
     }
   }
 
+  /**
+   * set standard guide message for users to start at the right point
+   */
   setErrorMessage() {
-    this.errorMessage = 'Please place the robot on the platform first.';
+    this.errorMessage =
+      'Please press PLACE to put the robot on the platform first.';
     setTimeout(() => {
       this.errorMessage = '';
     }, 3000);

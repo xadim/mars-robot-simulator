@@ -8,7 +8,7 @@ export class RobotService {
   _robotCurrentPosition: any = {};
   _unit: number = 74; // margin 0f 14 to place the object in the middle of the square
   _robot: number = 60;
-  _platformMinusRobotSize: number = 296; // margin = 4px
+  _platformMinusRobotSize: number = 298; // margin = 2px
   // tracer:
   _units = 5;
 
@@ -25,7 +25,7 @@ export class RobotService {
     this._robotCurrentPosition.yPosition = yPosition;
     this._robotCurrentPosition.facing = facing;
     this._robotCurrentPosition.xAxis =
-      xPosition <= 0 ? 0 : xPosition * this._unit;
+      xPosition <= 0 ? 2 : xPosition * this._unit;
     this._robotCurrentPosition.yAxis =
       yPosition <= 0
         ? this._platformMinusRobotSize
@@ -34,6 +34,11 @@ export class RobotService {
     this.dataSharingSrv.robotCurrentPosition.next(this._robotCurrentPosition);
   }
 
+  /**
+   *
+   * @param d
+   * @returns direction
+   */
   getDirectionDegree(d: string) {
     let direction;
     switch (d) {
@@ -57,8 +62,8 @@ export class RobotService {
   }
 
   /***
-   * Move one position inside table top
-   *
+   * Move the robot by one unit position inside table top
+   * sets the current robot object attributes
    */
   move() {
     let facing = this._robotCurrentPosition.facing;
@@ -92,7 +97,7 @@ export class RobotService {
   }
 
   /***
-   * change the facing 90degrees
+   * change the robot facing by 90 degrees
    * @param newFacing
    */
   rotate(newFacing: string) {
@@ -117,24 +122,6 @@ export class RobotService {
     this._robotCurrentPosition.direction = this.getDirectionDegree(
       this._robotCurrentPosition.facing
     );
-    // this._robotCurrentPosition.direction =
-    //   newFacing === 'LEFT'
-    //     ? this.RotateRight(this._robotCurrentPosition.direction)
-    //     : this.RotateRight(this._robotCurrentPosition.direction);
     this.dataSharingSrv.robotCurrentPosition.next(this._robotCurrentPosition);
-  }
-
-  RotateRight(rotation: number) {
-    rotation = rotation + 90;
-    if (rotation >= 360) {
-      rotation = 0;
-    }
-  }
-
-  RotateLeft(rotation: number) {
-    rotation = rotation + 90;
-    if (rotation >= 360) {
-      rotation = 0;
-    }
   }
 }
