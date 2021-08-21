@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "fgclinical": {
+    "marsrobotsimulator": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,16 +23,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/fgclinical",
+            "outputPath": "dist/marsrobotsimulator",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
@@ -76,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fgclinical:build:production"
+              "browserTarget": "marsrobotsimulator:build:production"
             },
             "development": {
-              "browserTarget": "fgclinical:build:development"
+              "browserTarget": "marsrobotsimulator:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,7 +84,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fgclinical:build"
+            "browserTarget": "marsrobotsimulator:build"
           }
         },
         "test": {
@@ -98,10 +95,7 @@
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
               "src/styles.scss"
@@ -112,5 +106,5 @@
       }
     }
   },
-  "defaultProject": "fgclinical"
+  "defaultProject": "marsrobotsimulator"
 }
