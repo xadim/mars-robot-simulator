@@ -53,6 +53,8 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 The project has been deployed on firebase and a demo can be played here https://mars-robot.web.app
 
+![Mars Robot Simulator](demo/mars-robot-simulator.gif)
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
@@ -77,4 +79,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 1- Move the robot using keyboard arrow keys
 2- Possibilty to move the robot for >1 unit at a time
-3- ..
+3- ...

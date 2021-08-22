@@ -2,7 +2,7 @@
   min-width: 150px;
   max-width: 500px;
   margin: 14px auto;
-  .player {
+  .place-btn {
     width: 90px;
     height: 90px;
   }
@@ -10,15 +10,15 @@
   .mat-icon {
     margin-top: -5px;
   }
-}
 
-.robot-full-width {
-  width: 100%;
-}
+  .robot-full-width {
+    width: 100%;
 
-td {
-  text-align: center;
-  padding: 14px 0;
+    td {
+      text-align: center;
+      padding: 14px 0;
+    }
+  }
 }
 
 .playground {
@@ -42,7 +42,14 @@ td {
     font-family: monospace;
     font-size: 1em;
   }
-
+  .robot {
+    width: 60px;
+    height: 60px;
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
   @keyframes typing {
     from {
       width: 0;
@@ -52,14 +59,6 @@ td {
   @keyframes blink {
     50% {
       border-color: transparent;
-    }
-  }
-  .robot {
-    width: 60px;
-    height: 60px;
-    img {
-      width: 60px;
-      height: 60px;
     }
   }
 }
@@ -76,17 +75,17 @@ td {
     p {
       span {
         font-size: 1.2em;
-        color: #3c096c;
+        color: #4050b5;
         font-weight: bolder;
         text-transform: capitalize;
       }
     }
   }
-  .super {
+  .report-x {
     border-top: 4px solid #240046;
   }
 
-  .team {
+  .report-y {
     border-top: 4px solid #5a189a;
   }
 
@@ -95,12 +94,12 @@ td {
     grid-area: 3/2 / span 2/2;
   }
 
-  .calc {
+  .report-d {
     border-top: 4px solid #c77dff;
   }
 }
 
-.gameScene {
+.stage {
   background-image: url("../../../assets/platform.jpg");
   display: block;
 }

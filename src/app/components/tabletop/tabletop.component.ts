@@ -17,6 +17,7 @@ export class TabletopComponent implements OnInit {
   message = 'Press PLACE to start playing..';
   image = new Image();
   errorMessage = '';
+  robotUrl = '../../../assets/robot.svg';
 
   constructor(
     private renderer: Renderer2,
@@ -30,31 +31,40 @@ export class TabletopComponent implements OnInit {
       if (data) {
         this.message = '';
         this.robotCurrentPosition = data;
-        this.putRobotOnTheScene(data);
+        this.positionRobot(data);
       }
     });
   }
 
   /**
+   * position the robot on the stage
    * @param data
    */
-  putRobotOnTheScene(data: any) {
+  positionRobot(data: any) {
     let playground = document.getElementById('playground');
     let robot = document.getElementById('robotInput');
     this.showPlayground = true;
-    playground!.classList.add('gameScene');
+    playground!.classList.add('stage');
     robot!.style.display = 'block';
     robot!.style.marginLeft = parseInt(data.xAxis) + 'px';
     robot!.style.marginTop = data.yAxis + 'px';
+    this.renderRobot(robot, data.direction);
+  }
+
+  /**
+   * create / rotate the robot object
+   * @param robot
+   * @param direction
+   */
+  renderRobot(robot: any, direction: number) {
     this.image.className = '';
-    this.image.style.transform = 'rotate(' + data.direction + 'deg)';
+    this.image.style.transform = 'rotate(' + direction + 'deg)';
 
     if (isEmpty(this.image.src)) {
-      this.image.src = '../../../assets/robot.svg';
+      this.image.src = this.robotUrl;
       robot!.appendChild(this.image);
     }
   }
-
   /**
    * Turn the robot right
    */
@@ -78,16 +88,6 @@ export class TabletopComponent implements OnInit {
   }
 
   /**
-   * Change the robot's Position
-   */
-  place(): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '375px',
-      // data: { name: this.name, animal: this.animal },
-    });
-  }
-
-  /**
    * Move the robot toward the direction in the place object
    */
   move(): void {
@@ -107,6 +107,20 @@ export class TabletopComponent implements OnInit {
     } else {
       this.setErrorMessage();
     }
+  }
+
+  /**
+   * Change the robot's Position
+   */
+  place(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '375px',
+      data: {
+        x: this.robotCurrentPosition.xPosition,
+        y: this.robotCurrentPosition.yPosition,
+        d: this.robotCurrentPosition.facing,
+      },
+    });
   }
 
   /**

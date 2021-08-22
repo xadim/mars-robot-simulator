@@ -5,12 +5,11 @@ import { DatasharingService } from '../services/datasharing.service';
   providedIn: 'root',
 })
 export class RobotService {
-  _robotCurrentPosition: any = {};
-  _unit: number = 74; // margin 0f 14 to place the object in the middle of the square
-  _robot: number = 60;
-  _platformMinusRobotSize: number = 298; // margin = 2px
+  currentPosition: any = {};
+  unit: number = 74; // margin 0f 14 to place the object in the middle of the square
+  platformMinusRobotSize: number = 298; // margin = 2px
   // tracer:
-  _units = 5;
+  units = 5;
 
   constructor(private dataSharingSrv: DatasharingService) {}
 
@@ -20,18 +19,17 @@ export class RobotService {
    * @param yPosition
    * @param facing
    */
-  _setRobotPosition(xPosition: number, yPosition: number, facing: string) {
-    this._robotCurrentPosition.xPosition = xPosition;
-    this._robotCurrentPosition.yPosition = yPosition;
-    this._robotCurrentPosition.facing = facing;
-    this._robotCurrentPosition.xAxis =
-      xPosition <= 0 ? 2 : xPosition * this._unit;
-    this._robotCurrentPosition.yAxis =
+  setRobotPosition(xPosition: number, yPosition: number, facing: string) {
+    this.currentPosition.xPosition = xPosition;
+    this.currentPosition.yPosition = yPosition;
+    this.currentPosition.facing = facing;
+    this.currentPosition.xAxis = xPosition <= 0 ? 2 : xPosition * this.unit;
+    this.currentPosition.yAxis =
       yPosition <= 0
-        ? this._platformMinusRobotSize
-        : this._platformMinusRobotSize - yPosition * this._unit; // 360 is the playground height, 60 is the robot size
-    this._robotCurrentPosition.direction = this.getDirectionDegree(facing);
-    this.dataSharingSrv.robotCurrentPosition.next(this._robotCurrentPosition);
+        ? this.platformMinusRobotSize
+        : this.platformMinusRobotSize - yPosition * this.unit; // 360 is the playground height, 60 is the robot size
+    this.currentPosition.direction = this.getDirectionDegree(facing);
+    this.dataSharingSrv.robotCurrentPosition.next(this.currentPosition);
   }
 
   /**
@@ -62,66 +60,62 @@ export class RobotService {
   }
 
   /***
-   * Move the robot by one unit position inside table top
-   * sets the current robot object attributes
+   * Moves the robot by one unit position inside the table top
+   * Then sets the current robot object attributes
    */
   move() {
-    let facing = this._robotCurrentPosition.facing;
+    let facing = this.currentPosition.facing;
     switch (facing) {
       case 'NORTH':
-        if (this._robotCurrentPosition.yPosition < this._units - 1) {
-          this._robotCurrentPosition.yPosition += 1;
+        if (this.currentPosition.yPosition < this.units - 1) {
+          this.currentPosition.yPosition += 1;
         }
         break;
       case 'SOUTH':
-        if (this._robotCurrentPosition.yPosition > 0) {
-          this._robotCurrentPosition.yPosition -= 1;
+        if (this.currentPosition.yPosition > 0) {
+          this.currentPosition.yPosition -= 1;
         }
         break;
       case 'EAST':
-        if (this._robotCurrentPosition.xPosition < this._units - 1) {
-          this._robotCurrentPosition.xPosition += 1;
+        if (this.currentPosition.xPosition < this.units - 1) {
+          this.currentPosition.xPosition += 1;
         }
         break;
       case 'WEST':
-        if (this._robotCurrentPosition.xPosition > 0) {
-          this._robotCurrentPosition.xPosition -= 1;
+        if (this.currentPosition.xPosition > 0) {
+          this.currentPosition.xPosition -= 1;
         }
         break;
     }
-    this._setRobotPosition(
-      this._robotCurrentPosition.xPosition,
-      this._robotCurrentPosition.yPosition,
-      this._robotCurrentPosition.facing
+    this.setRobotPosition(
+      this.currentPosition.xPosition,
+      this.currentPosition.yPosition,
+      this.currentPosition.facing
     );
   }
 
   /***
-   * change the robot facing by 90 degrees
+   * change the robot facing by 90 degrees using LEFT or RIGHT Keys
    * @param newFacing
    */
   rotate(newFacing: string) {
-    switch (this._robotCurrentPosition.facing) {
+    switch (this.currentPosition.facing) {
       case 'NORTH':
-        this._robotCurrentPosition.facing =
-          newFacing === 'LEFT' ? 'WEST' : 'EAST';
+        this.currentPosition.facing = newFacing === 'LEFT' ? 'WEST' : 'EAST';
         break;
       case 'SOUTH':
-        this._robotCurrentPosition.facing =
-          newFacing === 'LEFT' ? 'EAST' : 'WEST';
+        this.currentPosition.facing = newFacing === 'LEFT' ? 'EAST' : 'WEST';
         break;
       case 'EAST':
-        this._robotCurrentPosition.facing =
-          newFacing === 'LEFT' ? 'NORTH' : 'SOUTH';
+        this.currentPosition.facing = newFacing === 'LEFT' ? 'NORTH' : 'SOUTH';
         break;
       case 'WEST':
-        this._robotCurrentPosition.facing =
-          newFacing === 'LEFT' ? 'SOUTH' : 'NORTH';
+        this.currentPosition.facing = newFacing === 'LEFT' ? 'SOUTH' : 'NORTH';
         break;
     }
-    this._robotCurrentPosition.direction = this.getDirectionDegree(
-      this._robotCurrentPosition.facing
+    this.currentPosition.direction = this.getDirectionDegree(
+      this.currentPosition.facing
     );
-    this.dataSharingSrv.robotCurrentPosition.next(this._robotCurrentPosition);
+    this.dataSharingSrv.robotCurrentPosition.next(this.currentPosition);
   }
 }

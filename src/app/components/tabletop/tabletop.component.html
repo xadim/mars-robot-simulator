@@ -40,7 +40,7 @@
           </button>
         </td>
         <td>
-          <button mat-fab color="primary" class="player" (click)="place()">
+          <button mat-fab color="primary" class="place-btn" (click)="place()">
             PLACE<span class="mat-button-wrapper"
               ><mat-icon
                 role="img"
@@ -99,7 +99,7 @@
       class="cards"
     >
       <mat-grid-tile>
-        <div class="super">
+        <div class="report-x">
           <h2>xAxis</h2>
           <p>
             The robot is currently at the postion
@@ -109,7 +109,7 @@
         </div>
       </mat-grid-tile>
       <mat-grid-tile>
-        <div class="team">
+        <div class="report-y">
           <h2>yAxis</h2>
           <p>
             The robot is currently at the postion
@@ -119,7 +119,7 @@
         </div>
       </mat-grid-tile>
       <mat-grid-tile>
-        <div class="calc">
+        <div class="report-d">
           <h2>Direction</h2>
           <p>
             The robot is currently positioned on the platform and heading
