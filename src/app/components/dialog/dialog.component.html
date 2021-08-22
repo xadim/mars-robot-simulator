@@ -1,7 +1,7 @@
 <!-- <h1 mat-dialog-title>Hi {{ data.name }}</h1> -->
 <form [formGroup]="positionForm" class="form-dialog">
   <div mat-dialog-content>
-    <p>Place the Robot in the Platform.</p>
+    <h2>Place the Robot in the Platform.</h2>
     <mat-form-field>
       <mat-label>Enter X axis value (required)</mat-label>
       <input
@@ -12,6 +12,7 @@
         type="number"
         formControlName="xFormControl"
       />
+      <mat-hint align="end">0 ≤ X ≤ 4</mat-hint>
     </mat-form-field>
 
     <mat-form-field>
@@ -24,6 +25,7 @@
         type="number"
         formControlName="yFormControl"
       />
+      <mat-hint align="end">0 ≤ X ≤ 4</mat-hint>
     </mat-form-field>
 
     <mat-form-field>
