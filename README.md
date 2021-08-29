@@ -1,8 +1,5 @@
 # MarsRobotSimulator
 
-===================
-Description
-
 ---
 
 - The application is a simulation of a toy robot moving on a square tabletop,
@@ -34,8 +31,8 @@ Description
 - A robot that is not on the table can choose the ignore the MOVE, LEFT, RIGHT
   and REPORT commands.
 - Input can be from a file, or from standard input, as the developer chooses.
-- Provide test data to exercise the application.
-  Constraints
+
+### Constraints
 
 ---
 
@@ -80,6 +77,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## TODO / Features
 
-1- Move the robot using keyboard arrow keys
-2- Possibilty to move the robot for >1 unit at a time
-3- ...
+1. Move the robot using keyboard arrow keys
+2. Possibilty to move the robot for >1 unit at a time
+3. Save Robot's path
+4. ...
