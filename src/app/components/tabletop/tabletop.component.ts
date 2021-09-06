@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RobotService } from '../../services/robot.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -20,7 +20,6 @@ export class TabletopComponent implements OnInit {
   robotUrl = '../../../assets/robot.svg';
 
   constructor(
-    private renderer: Renderer2,
     private robotSrv: RobotService,
     private dataSrv: DatasharingService,
     public dialog: MatDialog // public dataRobot: RobotPosition
